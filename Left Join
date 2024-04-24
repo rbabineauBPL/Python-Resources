@@ -1,0 +1,42 @@
+
+#1. import the pandas library as pd.
+
+#in command prompt
+pip install pandas
+#in codebook
+import pandas as pd
+
+
+#2. Create two pandas DataFrames (data1 and data2), each containing an 'ID' column.
+# Sample data
+data1 = pd.DataFrame({
+    'ID': [1, 2, 3],
+    'Name': ['Alice', 'Bob', 'Charlie']
+})
+
+data2 = pd.DataFrame({
+    'ID': [1, 2, 4],
+    'Age': [25, 30, 35]
+})
+
+
+#3. Use the pd.merge() function to perform the left join. The on='ID' parameter specifies 
+#that the join should be performed on the 'ID' column, and the how='left' parameter specifies 
+#that we want an left join. The resulting DataFrame left_join_result contains only the rows 
+# where 'ID' values exist in both data1 and data2.
+
+
+
+left_join_result = pd.merge(data1, data2, on='ID', how='left')
+
+
+#4. Print the result.
+
+print(left_join_result)
+
+#Note: the merge command in pandas can be modified for multiple keys by adding brackets around
+#the variables and adding additional keys
+
+
+# Perform left join on multiple keys
+left_join_result = pd.merge(data1, data2, on=['Key 1', 'Key 2'], how='left')
