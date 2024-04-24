@@ -17,11 +17,11 @@ Overall, the code reads data from a CSV file, processes it to extract and conver
 #creating HS variables
 df = pd.read_csv('data.csv')
 
+#making a seperate variable called HS grouping by  taking the first two variables of the HS Code. 
 df['HS_Grouping']  = df['HS6 Code'].astype(str).str[:2]                
 
+#returnng variables to integer level. 
 df['HS_Grouping_int'] = df['HS_Grouping'].astype(int)
-
-df.to_csv('appended_master.csv', index = False)
 
 
 #mapping variable based on HS code
@@ -47,6 +47,7 @@ hs_categories = {
     (98, 99): "Commodities Not Elsewhere Specified"
 }
 
+#applying map to variables to make variable HS_Name
 def map_hs_category(HS_Grouping_int):
     for key, category in hs_categories.items():
         if key[0] < HS_Grouping_int <= key[1]:
