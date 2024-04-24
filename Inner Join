@@ -1,23 +1,44 @@
 
-data1 = [
-    {'ID': 1, 'Name': 'Alice'},
-    {'ID': 2, 'Name': 'Bob'},
-    {'ID': 3, 'Name': 'Charlie'}
-]
+#1. import the pandas library as pd.
 
-data2 = [
-    {'ID': 1, 'Age': 25},
-    {'ID': 2, 'Age': 30},
-    {'ID': 4, 'Age': 35}
-]
+#in command prompt
+pip install pandas
+#in codebook
+import pandas as pd
 
-# Perform inner join
-inner_join_result = []
-for row1 in data1:
-    for row2 in data2:
-        if row1['ID'] == row2['ID']:
-            inner_join_result.append({**row1, **row2})
 
-# Print result
-for row in inner_join_result:
-    print(row)
+#2. Create two pandas DataFrames (data1 and data2), each containing an 'ID' column.
+# Sample data
+data1 = pd.DataFrame({
+    'ID': [1, 2, 3],
+    'Name': ['Alice', 'Bob', 'Charlie']
+})
+
+data2 = pd.DataFrame({
+    'ID': [1, 2, 4],
+    'Age': [25, 30, 35]
+})
+
+
+#3. Use the pd.merge() function to perform the inner join. The on='ID' parameter specifies 
+#that the join should be performed on the 'ID' column, and the how='inner' parameter specifies 
+#that we want an inner join. #The resulting DataFrame inner_join_result contains only the rows 
+# where 'ID' values exist in both data1 and data2.
+
+
+
+inner_join_result = pd.merge(data1, data2, on='ID', how='inner')
+
+
+#4. Print the result.
+
+print(inner_join_result)
+
+#Note: the merge command in pandas can be modified for multiple keys by adding brackets around
+#the variables and adding additional keys
+
+
+# Perform inner join on multiple keys
+inner_join_result = pd.merge(data1, data2, on=['Key 1', 'Key 2'], how='inner')
+
+
