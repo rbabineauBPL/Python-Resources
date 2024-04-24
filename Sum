@@ -1,0 +1,11 @@
+#To sum numbers in a ceratin column
+
+numbers = [1, 2, 3, 4, 5]
+total = sum(numbers)
+print(total)  # Output: 15
+
+#sum numbers of a certain count (good for HSN)
+
+numbers = [1, 2, 2, 3, 4, 2, 5]
+count_of_twos = numbers.count(2)
+print(count_of_twos) 
