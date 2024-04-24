@@ -1,1 +1,41 @@
+#1. import the pandas library as pd.
 
+#in command prompt
+pip install pandas
+#in codebook
+import pandas as pd
+
+
+#2. Create two pandas DataFrames (data1 and data2), each containing an 'ID' column.
+# Sample data
+data1 = pd.DataFrame({
+    'ID': [1, 2, 3],
+    'Name': ['Alice', 'Bob', 'Charlie']
+})
+
+data2 = pd.DataFrame({
+    'ID': [1, 2, 4],
+    'Age': [25, 30, 35]
+})
+
+
+#3. Use the pd.merge() function to perform the outer join. The on='ID' parameter specifies 
+#that the join should be performed on the 'ID' column, and the how='outer' parameter specifies 
+#that we want an outer join. The resulting DataFrame outer_join_result contains only the rows 
+# where 'ID' values exist in both data1 and data2.
+
+
+
+outer_join_result = pd.merge(data1, data2, on='ID', how='outer')
+
+
+#4. Print the result.
+
+print(outer_join_result)
+
+#Note: the merge command in pandas can be modified for multiple keys by adding brackets around
+#the variables and adding additional keys
+
+
+# Perform outer join on multiple keys
+outer_join_result = pd.merge(data1, data2, on=['Key 1', 'Key 2'], how='outer')
