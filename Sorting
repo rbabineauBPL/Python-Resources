@@ -1,0 +1,28 @@
+# you can sort values in a data frame using pandas
+
+import pandas as pd
+
+# Example DataFrame
+df = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+    'Age': [25, 30, 20, 35],
+    'Salary': [50000, 60000, 45000, 70000]
+})
+
+# Sort the DataFrame by a single column (e.g., 'Age')
+
+sorted_df = df.sort_values(by='Age')
+print(sorted_df)
+
+#to sort in descednign order you can do the following
+
+sorted_df_descending = df.sort_values(by='Age', ascending=False)
+print(sorted_df_descending)
+
+
+# to sort a number of columns you can do the following
+
+# Sort by 'Age' in ascending order, and then by 'Salary' in descending order
+
+sorted_df_multiple = df.sort_values(by=['Age', 'Salary'], ascending=[True, False])
+print(sorted_df_multiple)
