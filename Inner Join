@@ -1,0 +1,23 @@
+
+data1 = [
+    {'ID': 1, 'Name': 'Alice'},
+    {'ID': 2, 'Name': 'Bob'},
+    {'ID': 3, 'Name': 'Charlie'}
+]
+
+data2 = [
+    {'ID': 1, 'Age': 25},
+    {'ID': 2, 'Age': 30},
+    {'ID': 4, 'Age': 35}
+]
+
+# Perform inner join
+inner_join_result = []
+for row1 in data1:
+    for row2 in data2:
+        if row1['ID'] == row2['ID']:
+            inner_join_result.append({**row1, **row2})
+
+# Print result
+for row in inner_join_result:
+    print(row)
