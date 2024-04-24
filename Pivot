@@ -1,0 +1,22 @@
+#You can use the pivot() function in pandas to reshape your DataFrame by pivoting the rows into columns. 
+
+#Suppose you have the following DataFrame:
+
+         Date         City  Temperature  Humidity
+0  2022-01-01     New York           32        60
+1  2022-01-02     New York           30        65
+2  2022-01-01  Los Angeles           75        55
+3  2022-01-02  Los Angeles           78        50
+
+#import pandas as pd
+
+pivot_df = df.pivot(index='Date', columns='City', values=['Temperature', 'Humidity'])
+print(pivot_df)
+
+#The following will be the output
+
+            Temperature            Humidity          
+City        Los Angeles New York Los Angeles New York
+Date                                                 
+2022-01-01           75       32          55       60
+2022-01-02           78       30          50       65
