@@ -1,0 +1,37 @@
+Using Wildcards with Regular Expressions (re module):
+Regular expressions provide a powerful way to match patterns in text data. 
+# Wildcards like . (dot) and .* can be used to represent any character and any sequence of characters respectively.
+
+import re
+
+# Find all words that start with 'a' and end with 'e'
+text = "apple orange banana"
+matches = re.findall(r'\ba\w+e\b', text)
+print(matches)
+
+#In the above example, \ba\w+e\b matches words that start with 'a', followed by any 
+#sequence of word characters (\w+), and end with 'e'. These are basic examples of using 
+#wildcards in Python with the glob module for file system operations and the re module for regular expressions. 
+#Wildcards provide a flexible way to specify patterns for matching text or filenames.
+
+#the 're' module can be paired with pandas to search certain variables
+
+#For example, you can use str.contains() method along with regular expressions 
+#from the re module to filter rows in a DataFrame based on patterns present in string columns.
+
+import pandas as pd
+import re
+
+# Create a DataFrame
+df = pd.DataFrame({'text': ['apple', 'banana', 'orange', 'pineapple']})
+
+# Use regular expression to filter rows where 'text' column contains 'apple' or 'banana'
+
+filtered_df = df[df['text'].str.contains(r'apple|banana', flags=re.IGNORECASE)]
+print(filtered_df)
+
+#In this example, str.contains() method is used to check if each element of the 'text' column 
+#contains either 'apple' or 'banana'. The regular expression r'apple|banana' matches either 'apple' or 'banana'. 
+#The flags=re.IGNORECASE argument makes the search case-insensitive.
+
+
