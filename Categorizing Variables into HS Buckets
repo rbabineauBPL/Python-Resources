@@ -1,0 +1,57 @@
+This Python code performs several tasks related to mapping HS (Harmonized System) categories based on HS codes in a DataFrame (`df`). Here's what each part of the code does:
+
+1. **Reading and Processing Data**:
+   - `df = pd.read_csv('appended_master.csv')`: Reads data from a CSV file named 'appended_master.csv' into a DataFrame called `df`.
+   - `df['HS_Grouping'] = df['HS6 Code'].astype(str).str[:2]`: Extracts the first two characters from the 'HS6 Code' column as a string and assigns it to a new column named 'HS_Grouping'.
+   - `df['HS_Grouping_int'] = df['HS_Grouping'].astype(int)`: Converts the 'HS_Grouping' column to integers and assigns it to a new column named 'HS_Grouping_int'.
+   - `df.to_csv('appended_master.csv', index=False)`: Writes the modified DataFrame back to the same CSV file, overwriting the existing data.
+
+2. **Mapping HS Categories**:
+   - `hs_categories`: Defines a dictionary where keys are tuples representing the range of HS_Grouping_int values, and values are corresponding HS category names.
+   - `map_hs_category(HS_Grouping_int)`: Defines a function that maps HS_Grouping_int values to HS category names based on the ranges defined in `hs_categories`.
+   - `df['HS_Name'] = df['HS_Grouping_int'].apply(map_hs_category)`: Applies the `map_hs_category` function to the 'HS_Grouping_int' column to create a new column named 'HS_Name' containing the mapped HS category names.
+   - `df.to_csv('appended_master.csv', index=False)`: Writes the DataFrame with the newly added 'HS_Name' column back to the CSV file.
+
+Overall, the code reads data from a CSV file, processes it to extract and convert HS codes, maps HS categories based on the codes, and writes the updated data back to the CSV file.
+
+#creating HS variables
+df = pd.read_csv('data.csv')
+
+df['HS_Grouping']  = df['HS6 Code'].astype(str).str[:2]                
+
+df['HS_Grouping_int'] = df['HS_Grouping'].astype(int)
+
+df.to_csv('appended_master.csv', index = False)
+
+
+#mapping variable based on HS code
+hs_categories = {
+    (1, 5): 'Animals & Animal Products',
+    (6, 15): 'Vegetable Products',
+    (16, 24): 'Foodstuffs & Beverages',
+    (25, 27): 'Mineral Products',
+    (28, 38): 'Chemicals & Allied Industries',
+    (39, 40): 'Plastics & Rubbers',
+    (41, 43): 'Raw Hides, Skins, Leather & Furs',
+    (44, 49): 'Wood & Wood Products',
+    (50, 63): 'Textiles',
+    (64, 67): 'Footwear, Headgear, Umbrellas, & Walking Sticks',
+    (68, 71): 'Stone, Glass, & Ceramics',
+    (72, 83): 'Metals',
+    (84, 85): 'Machinery & Mechanical Appliances',
+    (86, 89): 'Transportation',
+    (90, 92): 'Optical, Photographic, Medical, & Musical Instruments',
+    (93, 93): 'Arms & Ammunition',
+    (94, 96): "Miscellaneous Manufactured Articles",
+    (97, 97): "Works of Art, Collectors' Pieces, & Antiques",
+    (98, 99): "Commodities Not Elsewhere Specified"
+}
+
+def map_hs_category(HS_Grouping_int):
+    for key, category in hs_categories.items():
+        if key[0] < HS_Grouping_int <= key[1]:
+            return category
+    return 'Unknown'
+df['HS_Name'] = df['HS_Grouping_int'].apply(map_hs_category)
+
+df.to_csv('appended_master.csv', index=False)
